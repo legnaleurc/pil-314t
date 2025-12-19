@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "pil-314t-poetry"
+version = "0.1.0"
+description = "Test project to demonstrate PIL.Image import crash in Python 3.14t"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.14"
+pillow = "^12.0.0"
+
+[build-system]
+requires = ["poetry-core>=2.2.0"]
+build-backend = "poetry.core.masonry.api"

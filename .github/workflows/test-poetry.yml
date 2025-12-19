@@ -1,0 +1,35 @@
+name: Test PIL Import on Python 3.14t (Poetry)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.14t (free-threaded)
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14t'
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: 2.2.0
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Install dependencies
+      working-directory: poetry-project
+      run: poetry install
+
+    - name: Run tests
+      working-directory: poetry-project
+      run: poetry run python -m unittest discover -s tests -v
